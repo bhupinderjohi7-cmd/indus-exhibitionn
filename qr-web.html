@@ -1,0 +1,12 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>QR codes for your website</title>
+<style>body{font-family:Georgia,serif;background:#f6efe2;color:#3b2a1a;padding:16px}input,button{font-size:18px;padding:8px}button{background:#b5532b;color:#fff;border:0;border-radius:18px;padding:8px 16px;margin:4px}.g{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;margin-top:16px}.c{background:#fff;color:#222;border-radius:14px;padding:16px;text-align:center}.q{display:flex;justify-content:center}#m{color:#a00}@media print{.no{display:none}}</style></head><body>
+<h1>QR codes for your website</h1><div class="no"><p>Type your website address (for example https://my-exhibition.netlify.app) and press Make QR codes.</p>
+<input id="ip" placeholder="https://my-exhibition.netlify.app" size="32"> <button onclick="mk()">Make QR codes</button><p id="m"></p></div><div class="g" id="g"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>var L=[["Drainage System","drainage"],["Double-Walled House","house"],["Bull","bull"],["Priest-King","priest"],["Game with Dice","dice"],["The Great Bath","greatbath"],["Harappa","harappa"],["Taxila","taxila"]];
+function mk(){var m=document.getElementById("m"),g=document.getElementById("g"),ip=document.getElementById("ip").value.trim();g.innerHTML="";m.textContent="";
+if(typeof QRCode==="undefined"){m.textContent="QR library did not load. Connect to the internet once, then reload this page.";return}
+if(!ip){m.textContent="Please type your website address first.";return}ip=ip.replace(/\/+$/,"");if(ip.indexOf("http")!==0)ip="https://"+ip;
+L.forEach(function(x){var c=document.createElement("div");c.className="c";c.innerHTML="<h3>"+x[0]+"</h3><div class='q'></div><button class='no'>Download PNG</button>";g.appendChild(c);var q=c.querySelector(".q");
+new QRCode(q,{text:ip+"/"+x[1]+".html",width:200,height:200});
+c.querySelector("button").onclick=function(){var cv=q.querySelector("canvas");var a=document.createElement("a");a.href=cv.toDataURL("image/png");a.download=x[1]+".png";a.click()}})}</script></body></html>
